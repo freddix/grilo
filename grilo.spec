@@ -1,11 +1,12 @@
 Summary:	Framework for access to sources of multimedia content
 Name:		grilo
 Version:	0.2.5
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/grilo/0.2/%{name}-%{version}.tar.xz
 # Source0-md5:	20b36e0471f7c40b04ea5e9e13920d47
+Patch0:		%{name}-vala.patch
 URL:		http://live.gnome.org/Grilo
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -14,7 +15,7 @@ BuildRequires:	gtk+3-devel
 BuildRequires:	libsoup-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
-BuildRequires:	vala
+BuildRequires:	vala-vapigen
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -38,6 +39,7 @@ API and internal documentation for grilo library.
 
 %prep
 %setup -q
+%patch0 -p1
 
 # kill gnome common deps
 sed -i -e '/GNOME_COMPILE_WARNINGS.*/d'		\
@@ -56,6 +58,7 @@ sed -i -e '/GNOME_COMPILE_WARNINGS.*/d'		\
 	--disable-debug		\
 	--disable-silent-rules	\
 	--disable-static	\
+	--enable-vala		\
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
