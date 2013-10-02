@@ -1,11 +1,11 @@
 Summary:	Framework for access to sources of multimedia content
 Name:		grilo
-Version:	0.2.6
+Version:	0.2.7
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/grilo/0.2/%{name}-%{version}.tar.xz
-# Source0-md5:	55532065ce4dba0e54fb43787c809e81
+# Source0-md5:	c0d87f6b94f3518daec97d1aa825106d
 URL:		http://live.gnome.org/Grilo
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -40,11 +40,14 @@ API and internal documentation for grilo library.
 %setup -q
 
 # kill gnome common deps
-sed -i -e '/GNOME_COMPILE_WARNINGS.*/d'		\
+%{__sed} -i -e '/GNOME_COMPILE_WARNINGS.*/d'	\
     -i -e '/GNOME_MAINTAINER_MODE_DEFINES/d'	\
     -i -e '/GNOME_COMMON_INIT/d'		\
     -i -e '/GNOME_CXX_WARNINGS.*/d'		\
     -i -e '/GNOME_DEBUG_CHECK/d' configure.ac
+
+# vala 0.22 fix
+%{__sed} -i 's/\ \[0.20\]/\ \[0.20\], \[0.22\]/' configure.ac
 
 %build
 %{__libtoolize}
