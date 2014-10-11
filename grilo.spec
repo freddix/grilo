@@ -1,11 +1,11 @@
 Summary:	Framework for access to sources of multimedia content
 Name:		grilo
-Version:	0.2.10
+Version:	0.2.11
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/grilo/0.2/%{name}-%{version}.tar.xz
-# Source0-md5:	208ace762431bed2570e62b05fad574f
+# Source0-md5:	65ac9100dab7f93c4df41cfad58dccba
 URL:		http://live.gnome.org/Grilo
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -14,6 +14,7 @@ BuildRequires:	gtk+3-devel
 BuildRequires:	libsoup-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
+BuildRequires:	totem-pl-parser-devel
 BuildRequires:	vala-vapigen
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -81,8 +82,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_bindir}/grilo-simple-playlist
 %attr(755,root,root) %{_bindir}/grl-inspect-0.2
+%attr(755,root,root) %{_bindir}/grl-launch-0.2
 %attr(755,root,root) %ghost %{_libdir}/libgrilo-0.2.so.1
 %attr(755,root,root) %ghost %{_libdir}/libgrlnet-0.2.so.0
 %attr(755,root,root) %ghost %{_libdir}/libgrlpls-0.2.so.0
